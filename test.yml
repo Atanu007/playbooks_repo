@@ -1,0 +1,11 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+   - name: 
+     command: "uname -r"
+     register: qwe
+
+   - name: store value to register
+     debug:
+       var: qwe

@@ -1,0 +1,32 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+   - name: package installation
+     package:
+       name: "{{ item.name }}"
+       state: "{{ item.state }}"
+     with_items:
+       - {name: 'httpd' , state: 'present'}
+       - {name: 'vsftpd' , state: 'present'}
+     tags: pkg
+   - name: package status
+     service:
+       name: "{{ item }}"
+       state: started
+       enabled: yes 
+     with_items:
+       - httpd
+       - vsftpd
+     tags: service
+
+#   - name: copy directory from one host to other
+#     copy:
+#       remote_src: True 
+#       dest: 
+#       directory_mode: yes
+#   - name: create a group
+#     group:
+#       name: dell_employee
+#       gid: 2222
+#       state: present

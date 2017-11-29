@@ -1,0 +1,16 @@
+---
+- hosts: all
+  remote_user: root
+
+  tasks:
+  - name: fetch the file from remote server
+    fetch:
+       src: /a/file1
+       dest: /tmp/fetch 
+    tags: fetch
+
+  - name: copy the file to dest_server
+    copy: 
+       src: /tmp/fetch/192.168.0.116/a/file1
+       dest: / 
+    tags: copy

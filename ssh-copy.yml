@@ -1,0 +1,15 @@
+---
+- hosts: all
+  remote_user: root
+  
+  tasks: 
+  - name: create a authorized_key
+    file:
+      path: /root/.ssh/authorized_keys
+      state: touch
+    tags: create_auth
+ 
+  - name: copy the id_rsa.pub to .ssh/authorized_keys
+    copy: 
+      content: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwvwGk1qGw0IaA+/w8D5YXalJ0QkR4R+uKFUVD4ZqFZDz4eGorEQLFeqd681QYibszLh6XOC5XAuK0nJSaimMQZZcZ32VE89FSupUV9/qQ7Gzl8rKwCRYM79xFl+rpUkP/MlTc0JC1rscSgf+cBPHI5Kb+0UkPqV2rjhkO9dTB8eHkt4pfxJlBF0B67FEen7WoMfZuk8nPWyeXq6tvUFPVyuWSbJzjZhZRMzghsXM/TcR8Hz1lBN95koWh+R4GLpeYbgEvuogsE8/dOSm67+aP4iTpGMOYGe6pMcUWZR9dQ9V7o3MqAOh3Mocb3ar1fQDiWzKgfQ7jpxNeVM++29pKw== root@ansible_master.example.com'
+      dest: /root/.ssh/authorized_keys

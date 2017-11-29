@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+   - name: 
+     shell: /usr/bin/top -n 1
+     register: qwe
+
+   - name: store value to register
+     debug:
+       var: qwe
+       verbosity: 2
